@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.dto.BoardDto;
@@ -45,9 +46,16 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writeDB(BoardDto board,RedirectAttributes ra) throws Exception{
 		System.out.println("writeDB");
+		System.out.println(board);
 		bs.write(board);
 		ra.addFlashAttribute("msg","success");
 		return "redirect:/board/list";
+	}
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
+		BoardDto dto = bs.read(bno);
+		System.out.println(dto);
+		model.addAttribute(bs.read(bno));
 	}
 	
 }

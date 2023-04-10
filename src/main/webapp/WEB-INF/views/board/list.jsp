@@ -57,7 +57,7 @@ $(document).ready(function(){
 			<tr>
 				<th style="width:10px">No</th>
 				<th style="width:200px">제목</th>
-				<th style="width:300px">내용</th>
+				<!-- <th style="width:300px">내용</th> -->
 				<th style="width:100px">작성자</th>
 				<th style="width:200px">작성일자</th>
 				<th style="width:40px">조회수</th>
@@ -67,7 +67,7 @@ $(document).ready(function(){
 				<tr>
 					<td style="width:10px">${dto.bno }</td>
 					<td style="width:200px"><a href="/controller/board/read${pageMaker.makeSearch() }&bno=${dto.bno}">${dto.title }</a></td>
-					<td style="width:300px">${dto.content}</td>
+					<%-- <td style="width:300px">${dto.content}</td> --%>
 					<td style="width:100px">${dto.writer}</td>
 					<td style="width:200px">
 						<fmt:parseDate value="${dto.regdate }" pattern="yyyy-MM-dd'T'HH:mm" var="now" type="both" />

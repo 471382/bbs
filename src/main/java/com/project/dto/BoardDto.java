@@ -24,6 +24,11 @@ public class BoardDto {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	@Override
+	public String toString() {
+		return "BoardDto [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + "]";
+	}
 	public String getContent() {
 		return content;
 	}
