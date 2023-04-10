@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.dto.BoardDto;
 import com.project.service.IBoardService;
 import com.project.vo.PageMaker;
 
@@ -35,6 +37,17 @@ public class BoardController {
 		System.out.println("--list pm"+pm);
 		model.addAttribute("list",bs.listSearchCriteria(pm));
 		pm.setTotalCount(bs.listSearchCount(pm));//1
+	}
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public void write() throws Exception{
+		System.out.println("write Page");
+	}
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String writeDB(BoardDto board,RedirectAttributes ra) throws Exception{
+		System.out.println("writeDB");
+		bs.write(board);
+		ra.addFlashAttribute("msg","success");
+		return "redirect:/board/list";
 	}
 	
 }

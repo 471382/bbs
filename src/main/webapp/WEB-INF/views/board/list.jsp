@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<title>Main Page</title>
+<title>List Page</title>
 <script>
 var result = '${msg}';
 	
@@ -25,7 +25,7 @@ $(document).ready(function(){
 	});
 	
 	$('.writeBtn').on("click",function(event){
-		location.href="/ex/board/write";
+		location.href="/controller/board/write";
 	});
 	$('#newBtn').on("click",function(event){
 		self.location="write";
@@ -66,7 +66,7 @@ $(document).ready(function(){
 			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td style="width:10px">${dto.bno }</td>
-					<td style="width:200px"><a href="/ex/board/read${pageMaker.makeSearch() }&bno=${dto.bno}">${dto.title }</a></td>
+					<td style="width:200px"><a href="/controller/board/read${pageMaker.makeSearch() }&bno=${dto.bno}">${dto.title }</a></td>
 					<td style="width:300px">${dto.content}</td>
 					<td style="width:100px">${dto.writer}</td>
 					<td style="width:200px">
