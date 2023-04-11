@@ -71,4 +71,14 @@ public class BoardController {
 		ra.addFlashAttribute("msg","success");
 		return "redirect:/board/list";
 	}
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String removeDB(@RequestParam("bno") int bno,PageMaker pm,Model model, RedirectAttributes ra)  throws Exception{
+		bs.remove(bno);
+		ra.addAttribute("page",pm.getPage());
+		ra.addAttribute("perPageNum", pm.getPerPageNum());
+		ra.addAttribute("searchType", pm.getSearchType());
+		ra.addAttribute("keyword", pm.getKeyword());
+		ra.addFlashAttribute("msg","success");
+		return "redirect:/board/list";
+	}
 }

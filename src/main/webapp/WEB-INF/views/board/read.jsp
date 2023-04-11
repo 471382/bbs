@@ -13,7 +13,6 @@ $(document).ready(function(){
 	
 	var formObj = $("form[role='form']");
 	
-	console.log(formObj);
 	
 	$(".btn-warning").on("click", function(){
 		formObj.attr("action", "/controller/board/modify");
