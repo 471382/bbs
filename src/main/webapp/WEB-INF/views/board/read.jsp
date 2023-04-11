@@ -42,21 +42,24 @@ $(document).ready(function(){
 </form>
 	<h1>READ</h1>
 	<h2>
-		Title<BR>
-		<input type="text"
+		제목<BR>
+		<div style = "border:2px solid blue; width:40%;">
+		${boardDto.title }
+		</div>
+		<%-- <input type="text"
 			name='title'  style="width:50%" value="${boardDto.title}"
-			readonly="readonly"></h2>
+			readonly="readonly"> --%></h2>
 	
 		<h2>
-		Content<BR>
-		<textarea  style="width:50%" name="content" rows="3"
-			readonly="readonly">${boardDto.content}</textarea>	</h2>
+		내용<BR><div style = "border:2px solid green; width:40%; height:200px;">${boardDto.content }</div>
+		<%-- <textarea  style="width:50%" name="content" rows="3"
+			readonly="readonly">${boardDto.content}</textarea> --%>	</h2>
 	
 		<h2>
-		Writer <BR>
-		<input type="text"
+		작성자 <BR><div style = "border:2px solid pink; width:40%;">${boardDto.writer }</div>
+		<%-- <input type="text"
 			name="writer" style="width:50%" value="${boardDto.writer}"
-			readonly="readonly">
+			readonly="readonly"> --%>
 		<h2>
 
 <!-- /.box-body -->

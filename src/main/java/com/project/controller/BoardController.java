@@ -57,5 +57,18 @@ public class BoardController {
 		System.out.println(dto);
 		model.addAttribute(bs.read(bno));
 	}
-	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void modify(@RequestParam("bno") int bno,PageMaker pm,Model model) throws Exception{
+		model.addAttribute(bs.read(bno));
+	}
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyDB(BoardDto board,PageMaker pm,Model model, RedirectAttributes ra) throws Exception{
+		bs.modify(board);
+		ra.addAttribute("page",pm.getPage());
+		ra.addAttribute("perPageNum", pm.getPerPageNum());
+		ra.addAttribute("searchType", pm.getSearchType());
+		ra.addAttribute("keyword", pm.getKeyword());
+		ra.addFlashAttribute("msg","success");
+		return "redirect:/board/list";
+	}
 }

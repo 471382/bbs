@@ -27,9 +27,6 @@ $(document).ready(function(){
 	$('.writeBtn').on("click",function(event){
 		location.href="/controller/board/write";
 	});
-	$('#newBtn').on("click",function(event){
-		self.location="write";
-	});
 });
 </script>
 </head>
@@ -50,31 +47,28 @@ $(document).ready(function(){
 			<input type = "text" name="keyword"
 				id="keywordInput" value = "${pageMaker.keyword }">
 			<button id = "searchBtn">검색</button>
-			<button id = "newBtn">새글</button>	
 		</div>
 		
-		<table width=100% border="1">
+		<table border="1">
 			<tr>
 				<th style="width:10px">No</th>
-				<th style="width:200px">제목</th>
-				<!-- <th style="width:300px">내용</th> -->
+				<th style="width:130px">제목</th>
 				<th style="width:100px">작성자</th>
-				<th style="width:200px">작성일자</th>
-				<th style="width:40px">조회수</th>
+				<th style="width:120px">작성일자</th>
+				<th style="width:70px">조회수</th>
 			</tr>
 			
 			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td style="width:10px">${dto.bno }</td>
-					<td style="width:200px"><a href="/controller/board/read${pageMaker.makeSearch() }&bno=${dto.bno}">${dto.title }</a></td>
-					<%-- <td style="width:300px">${dto.content}</td> --%>
-					<td style="width:100px">${dto.writer}</td>
-					<td style="width:200px">
+					<td style="width:50px"><a href="/controller/board/read${pageMaker.makeSearch() }&bno=${dto.bno}">${dto.title }</a></td>
+					<td style="width:30px">${dto.writer}</td>
+					<td style="width:100px">
 						<fmt:parseDate value="${dto.regdate }" pattern="yyyy-MM-dd'T'HH:mm" var="now" type="both" />
 						<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value = "${now }"/>
 					</td>
 					
-					<td style="width:40px">${dto.viewcnt}</td>
+					<td style="width:20px">${dto.viewcnt}</td>
 				</tr>
 			</c:forEach>
 		</table>
