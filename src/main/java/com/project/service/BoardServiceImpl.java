@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.dao.BoardDao;
 import com.project.dto.BoardDto;
@@ -15,11 +16,16 @@ public class BoardServiceImpl implements IBoardService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	@Transactional
 	@Override
 	public void write(BoardDto board) throws Exception {
-		System.out.println(sqlSession);
 		BoardDao dao=sqlSession.getMapper(BoardDao.class);
 		dao.create(board);
+		String[] files = board.getFiles();
+		if(files == null) return;
+		for(String file : files) {
+			dao.addAttach(file);
+		}
 	}
 
 	@Override

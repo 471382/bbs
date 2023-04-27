@@ -1,15 +1,21 @@
 package com.project.controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.dto.BoardDto;
@@ -24,7 +30,8 @@ import com.project.vo.PageMaker;
 public class BoardController {
 	@Autowired
 	private IBoardService bs;
-	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -40,12 +47,24 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String writeDB(BoardDto board,RedirectAttributes ra) throws Exception{
+	public String writeDB(BoardDto board,MultipartFile file, RedirectAttributes ra,Model model) throws Exception{
+		
+		System.out.println(file.getOriginalFilename()+","+file.getSize()+","+file.getContentType());
+		
+		String savedFileName = uploadFile(file);
+		model.addAttribute("savedFileName",savedFileName);
 		bs.write(board);
 		ra.addFlashAttribute("msg","success");
 		return "redirect:/board/list";
 	}
 	
+	private String uploadFile(MultipartFile file) throws Exception {
+		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		File target = new File(uploadPath, filename);
+		FileCopyUtils.copy(file.getBytes(), target);
+		return filename;
+	}
+
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
 //		BoardDto dto = bs.read(bno);
