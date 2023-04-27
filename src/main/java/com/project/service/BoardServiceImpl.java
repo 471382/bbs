@@ -25,6 +25,7 @@ public class BoardServiceImpl implements IBoardService {
 	@Override
 	public BoardDto read(int bno) throws Exception {
 		BoardDao dao=sqlSession.getMapper(BoardDao.class);
+		dao.updateViewCnt(bno);
 		return dao.read(bno);
 	}
 

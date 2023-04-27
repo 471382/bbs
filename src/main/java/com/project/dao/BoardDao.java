@@ -12,4 +12,5 @@ public interface BoardDao {
 	public void delete(int bno) throws Exception;
 	public List<BoardDto> listSearch(PageMaker pm) throws Exception;
 	public int listSearchCount(PageMaker pm) throws Exception;
+	public void updateViewCnt(int bno);
 }
