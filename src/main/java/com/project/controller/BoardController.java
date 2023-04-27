@@ -32,7 +32,7 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(PageMaker pm, Model model) throws Exception{
 		model.addAttribute("list",bs.listSearchCriteria(pm));
-		pm.setTotalCount(bs.listSearchCount(pm));//23
+		pm.setTotalCount(bs.listSearchCount(pm));
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
