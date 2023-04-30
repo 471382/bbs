@@ -22,6 +22,7 @@ public class FileUtils {
 //		return mediaMap.get(ext.toUpperCase());
 //	}
 	
+	//파일 업로드
 	public static String uploadFile(MultipartFile file,String uploadPath) throws Exception {
 		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
 		String dirname = getCurrentUploadPath(uploadPath);
@@ -43,10 +44,12 @@ public class FileUtils {
 //		ImageIO.write(destImg, ext.toUpperCase(), newFile);
 //	}
 
+	//확장자 찾기
 	public static String getFileExtension(String filename) {
 		return filename.substring(filename.lastIndexOf(".")+1);
 	}
 
+	//현재 날짜에 해당하는 폴더찾기(없으면 생성)
 	public static String getCurrentUploadPath(String uploadRootPath) {
 		Calendar cal = Calendar.getInstance();
 		int y = cal.get(Calendar.YEAR);
@@ -56,6 +59,7 @@ public class FileUtils {
 		return makeDir(uploadRootPath,"" + y , len2(m), len2(d));
 	}
 	
+	//폴더생성 메소드
 	private static String makeDir(String uploadRootPath, String... paths) {
 		for(String path:paths) {
 			uploadRootPath += File.separator + path;

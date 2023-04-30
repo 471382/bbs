@@ -1,17 +1,20 @@
 package com.project.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,10 +52,12 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writeDB(BoardDto board,MultipartFile file, RedirectAttributes ra,Model model) throws Exception{
 		
-		System.out.println(file.getOriginalFilename()+","+file.getSize()+","+file.getContentType());
-		
-		String savedFileName = uploadFile(file);
-		model.addAttribute("savedFileName",savedFileName);
+		System.out.println(board);
+		if(file!=null) {
+			System.out.println(file.getOriginalFilename()+","+file.getSize()+","+file.getContentType());
+			String savedFileName = uploadFile(file);
+			model.addAttribute("savedFileName",savedFileName);
+		}
 		bs.write(board);
 		ra.addFlashAttribute("msg","success");
 		return "redirect:/board/list";

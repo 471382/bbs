@@ -14,13 +14,13 @@ public class BoardDto {
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime regdate;
 	private int viewcnt;
-	private String[] files;
+	private String file;
 	
-	public String[] getFiles() {
-		return files;
+	public String getFile() {
+		return file;
 	}
-	public void setFiles(String[] files) {
-		this.files = files;
+	public void setFile(String file) {
+		this.file = file;
 	}
 	public int getBno() {
 		return bno;
@@ -38,7 +38,7 @@ public class BoardDto {
 	@Override
 	public String toString() {
 		return "BoardDto [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", files=" + Arrays.toString(files) + "]";
+				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", file=" + file + "]";
 	}
 	public String getContent() {
 		return content;
