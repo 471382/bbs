@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/controller/resources/css/template.css"/>
 <title>Write Page</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -22,7 +23,39 @@ $(document).ready(function() {
   });
 });
 </script>
-	<form role="form" action="/controller/board/write" method="post">
+<form action="/controller/board/write" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label for="title" class="control-label col-sm-2">Title</label>
+        <div class="col-sm-10">
+            <input type="text" path="title" id="title" class="form-control" required="required"/>
+        </div>
+    </div>
+   
+    <div class="form-group">
+        <label for="content" class="control-label col-sm-2">Content</label>
+        <div class="col-sm-10">
+            <textarea path="content" id="content" class="form-control" rows="8" required="required"></textarea>
+        </div>
+    </div>
+     <div class="form-group">
+        <label for="writer" class="control-label col-sm-2">Writer</label>
+        <div class="col-sm-10">
+           <input type="text" path="writer" id="writer" class="form-control" required="required"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="file" class="control-label col-sm-2">File</label>
+        <div class="col-sm-10">
+            <input type="file" name="file" id="file" class="form-control-file"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+	<!-- <form role="form" action="/controller/board/write" method="post">
 		<h3> 제목  <input type="text"
 				name='title' placeholder="제목을 입력해 주세요" style="width:100%"></h3> 
 		<h2> 내용 
@@ -37,6 +70,6 @@ $(document).ready(function() {
 		
 		
 		
-	</form>
+	</form> -->
 </body>
 </html>

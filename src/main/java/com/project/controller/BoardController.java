@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.dto.BoardDto;
@@ -50,25 +51,51 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String writeDB(BoardDto board,MultipartFile file, RedirectAttributes ra,Model model) throws Exception{
-		
-		System.out.println(board);
-		if(file!=null) {
-			System.out.println(file.getOriginalFilename()+","+file.getSize()+","+file.getContentType());
-			String savedFileName = uploadFile(file);
-			model.addAttribute("savedFileName",savedFileName);
-		}
-		bs.write(board);
-		ra.addFlashAttribute("msg","success");
-		return "redirect:/board/list";
+	public String writeDB(MultipartHttpServletRequest request, RedirectAttributes ra, Model model) throws Exception {
+	    BoardDto board = new BoardDto();
+	    System.out.println(request.getParameter("title"));
+	    board.setTitle(request.getParameter("title"));
+	    board.setWriter(request.getParameter("writer"));
+	    board.setContent(request.getParameter("content"));
+	    System.out.println(board);
+	    MultipartFile file = request.getFile("file");
+	    System.out.println(file);
+	    if (file != null && !file.isEmpty()) {
+	        String savedFileName = uploadFile(file);
+	        model.addAttribute("savedFileName", savedFileName);
+	    }
+
+	    bs.write(board);
+	    ra.addFlashAttribute("msg", "success");
+	    return "redirect:/board/list";
 	}
-	
+
 	private String uploadFile(MultipartFile file) throws Exception {
-		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-		File target = new File(uploadPath, filename);
-		FileCopyUtils.copy(file.getBytes(), target);
-		return filename;
+	    String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+	    File target = new File(uploadPath, filename);
+	    FileCopyUtils.copy(file.getBytes(), target);
+	    return filename;
 	}
+//	@RequestMapping(value = "/write", method = RequestMethod.POST)
+//	public String writeDB(BoardDto board,MultipartFile file, RedirectAttributes ra,Model model) throws Exception{
+//		
+//		System.out.println(board);
+//		if(file!=null) {
+//			System.out.println(file.getOriginalFilename()+","+file.getSize()+","+file.getContentType());
+//			String savedFileName = uploadFile(file);
+//			model.addAttribute("savedFileName",savedFileName);
+//		}
+//		bs.write(board);
+//		ra.addFlashAttribute("msg","success");
+//		return "redirect:/board/list";
+//	}
+//	
+//	private String uploadFile(MultipartFile file) throws Exception {
+//		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+//		File target = new File(uploadPath, filename);
+//		FileCopyUtils.copy(file.getBytes(), target);
+//		return filename;
+//	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
