@@ -21,7 +21,7 @@ public class BoardServiceImpl implements IBoardService {
 	public void write(BoardDto board) throws Exception {
 		BoardDao dao=sqlSession.getMapper(BoardDao.class);
 		dao.create(board);
-		if(board.getFile() == "") return;
+		if(board.getFile() == null) return;
 		else dao.addAttach(board.getFile());
 	}
 

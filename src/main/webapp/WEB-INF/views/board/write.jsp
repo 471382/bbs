@@ -23,7 +23,7 @@ $(document).ready(function() {
   });
 });
 </script>
-<form action="/controller/board/write" method="post" class="form-horizontal">
+<!-- <form action="/controller/board/write" method="post" class="form-horizontal">
     <div class="form-group">
         <label for="title" class="control-label col-sm-2">Title</label>
         <div class="col-sm-10">
@@ -54,10 +54,10 @@ $(document).ready(function() {
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-</form>
-	<!-- <form role="form" action="/controller/board/write" method="post">
-		<h3> 제목  <input type="text"
-				name='title' placeholder="제목을 입력해 주세요" style="width:100%"></h3> 
+</form> -->
+	<form role="form" action="/controller/board/write" method="post" enctype="multipart/form-data">
+		<h1> 제목  <input type="text"
+				name='title' placeholder="제목을 입력해 주세요" style="width:100%; height:30px"></h3> 
 		<h2> 내용 
 			<textarea name="content" rows="8" style="width:100%"
 				placeholder="내용을 입력해 주세요."></textarea></h2>
@@ -70,6 +70,6 @@ $(document).ready(function() {
 		
 		
 		
-	</form> -->
+	</form>
 </body>
 </html>

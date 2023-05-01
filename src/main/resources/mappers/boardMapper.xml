@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </insert>
 <insert id="addAttach">
 	insert into tbl_attach(bno,fullname)
-	values (last_insert_id(),#{fullname})
+    values ((SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'seq_board';), #{file})
 </insert>
 <select id="read" resultType="BoardDto">
 	select * from tbl_board where bno=#{bno}

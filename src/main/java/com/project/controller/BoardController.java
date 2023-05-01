@@ -63,8 +63,9 @@ public class BoardController {
 	    if (file != null && !file.isEmpty()) {
 	        String savedFileName = uploadFile(file);
 	        model.addAttribute("savedFileName", savedFileName);
+	        board.setFile(savedFileName);
 	    }
-
+	    System.out.println(board);
 	    bs.write(board);
 	    ra.addFlashAttribute("msg", "success");
 	    return "redirect:/board/list";
@@ -76,26 +77,6 @@ public class BoardController {
 	    FileCopyUtils.copy(file.getBytes(), target);
 	    return filename;
 	}
-//	@RequestMapping(value = "/write", method = RequestMethod.POST)
-//	public String writeDB(BoardDto board,MultipartFile file, RedirectAttributes ra,Model model) throws Exception{
-//		
-//		System.out.println(board);
-//		if(file!=null) {
-//			System.out.println(file.getOriginalFilename()+","+file.getSize()+","+file.getContentType());
-//			String savedFileName = uploadFile(file);
-//			model.addAttribute("savedFileName",savedFileName);
-//		}
-//		bs.write(board);
-//		ra.addFlashAttribute("msg","success");
-//		return "redirect:/board/list";
-//	}
-//	
-//	private String uploadFile(MultipartFile file) throws Exception {
-//		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-//		File target = new File(uploadPath, filename);
-//		FileCopyUtils.copy(file.getBytes(), target);
-//		return filename;
-//	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
