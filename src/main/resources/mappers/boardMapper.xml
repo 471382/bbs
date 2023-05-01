@@ -45,7 +45,7 @@ update tbl_board set viewcnt = viewcnt + 1 where bno=#{bno}
 
 <!-- ![CDATA는 []괄호 안에 있는것은 일반 문자열을 기술한것이다. -->
 <select id="listSearch" resultType="com.project.dto.BoardDto">
-<![CDATA[select bno, title, content, writer, viewcnt, regdate from (select rownum rn,a.*
+<![CDATA[select bno, title, content, writer, viewcnt, TO_CHAR(regdate, 'yyyy-MM-dd HH24:MI:SS') AS regdate from (select rownum rn,a.*
     from (
         select tbl_board.*
         from tbl_board 

@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -36,6 +37,10 @@ public class BoardController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(PageMaker pm, Model model) throws Exception{
+		List<BoardDto> dtos = bs.listSearchCriteria(pm);
+		for(BoardDto dto: dtos) {
+			System.out.println(dto);
+		}
 		model.addAttribute("list",bs.listSearchCriteria(pm));
 		pm.setTotalCount(bs.listSearchCount(pm));
 	}
@@ -51,15 +56,12 @@ public class BoardController {
 	    board.setTitle(request.getParameter("title"));
 	    board.setWriter(request.getParameter("writer"));
 	    board.setContent(request.getParameter("content"));
-	    System.out.println(board);
 	    MultipartFile file = request.getFile("file");
-	    System.out.println(file);
 	    if (file != null && !file.isEmpty()) {
 	        String savedFileName = uploadFile(file);
 	        model.addAttribute("savedFileName", savedFileName);
 	        board.setFile(savedFileName);
 	    }
-	    System.out.println(board);
 	    bs.write(board);
 	    ra.addFlashAttribute("msg", "success");
 	    return "redirect:/board/list";

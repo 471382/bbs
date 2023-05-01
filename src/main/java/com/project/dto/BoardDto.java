@@ -1,8 +1,5 @@
 package com.project.dto;
 
-import java.time.LocalDateTime;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 public class BoardDto {
@@ -10,8 +7,7 @@ public class BoardDto {
 	private String title;
 	private String content;
 	private String writer;
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
-	private LocalDateTime regdate;
+	private String regdate;
 	private int viewcnt;
 	private String file;
 	
@@ -51,10 +47,11 @@ public class BoardDto {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public LocalDateTime getRegdate() {
+	
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(LocalDateTime regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	public int getViewcnt() {

@@ -63,9 +63,8 @@ $(document).ready(function(){
 					<td style="width:10px">${dto.bno }</td>
 					<td style="width:50px"><a href="/controller/board/read${pageMaker.makeSearch() }&bno=${dto.bno}">${dto.title }</a></td>
 					<td style="width:30px">${dto.writer}</td>
-					<td style="width:100px">
-						<fmt:parseDate value="${dto.regdate }" pattern="yyyy-MM-dd'T'HH:mm" var="now" type="both" />
-						<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value = "${now }"/>
+					<td style="width:200px">
+						${dto.regdate}
 					</td>
 					
 					<td style="width:20px">${dto.viewcnt}</td>
