@@ -10,13 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </insert>
 <insert id="addAttach">
 	insert into tbl_attach(bno,fullname)
-    values ((SELECT * 
-FROM(
-    SELECT 
-        bno 
-    FROM tbl_board
-    ORDER BY bno DESC)
-WHERE ROWNUM = 1), #{file})
+    values ((
+    SELECT * FROM(
+    SELECT bno FROM tbl_board ORDER BY bno DESC) 
+    WHERE ROWNUM = 1), #{file})
 </insert>
 
 <select id="read" resultType="BoardDto">
