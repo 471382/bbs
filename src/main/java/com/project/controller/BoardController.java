@@ -67,14 +67,7 @@ public class BoardController {
 	    ra.addFlashAttribute("msg", "success");
 	    return "redirect:/board/list";
 	}
-
-//	private String uploadFile(MultipartFile file) throws Exception {
-//	    String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-//	    File target = new File(uploadPath, filename);
-//	    FileCopyUtils.copy(file.getBytes(), target);
-//	    return filename;
-//	}
-
+	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
 		BoardDto dto = bs.read(bno);
