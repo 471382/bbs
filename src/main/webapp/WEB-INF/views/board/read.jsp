@@ -46,37 +46,21 @@ $(document).ready(function(){
 		제목<BR>
 		<div style = "border:2px solid blue; width:80%;">
 		${boardDto.title }
-		</div>
-		<%-- <input type="text"
-			name='title'  style="width:50%" value="${boardDto.title}"
-			readonly="readonly"> --%></h2>
+		</div></h2>
 	
 		<h2 class="text">
 		내용</h2><div style = "border:2px solid green; width:80%; height:600px;">
 		<c:if test="${boardDto.file != null and boardDto.file != ''}">
     <c:choose>
         <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
-            <a href="${pageContext.request.contextPath}/download?fileName=${boardDto.file}"><img class="imgFile" src="/controller/resources/workspace/${ boardDto.file }" /></a>
+            <a title="클릭 시 다운로드" href="${pageContext.request.contextPath}/download?fileName=${boardDto.file}"><img class="imgFile" src="/controller/resources/workspace/${ boardDto.file }"/></a>
         </c:when>
         <c:otherwise>
             <a href="${pageContext.request.contextPath}/download?fileName=${boardDto.file}">${boardDto.file}</a>
         </c:otherwise>
     </c:choose>
 </c:if>
-		<%-- <c:if test="${boardDto.file != null and boardDto.file != ''}">
-    <c:choose>
-        <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
-            
-            
-            <img class="imgFile" src="/controller/resources/workspace/${ boardDto.file }" />
-        </c:when>
-        <c:otherwise>
-            <a href="${pageContext.request.contextPath}/download?filename=${boardDto.filename}">다운로드</a>
-        </c:otherwise>
-    </c:choose>
-</c:if> --%><br><div class = "content">${boardDto.content }</div></div>
-		<%-- <textarea  style="width:50%" name="content" rows="3"
-			readonly="readonly">${boardDto.content}</textarea> --%>
+		<br><div class = "content">${boardDto.content }</div></div>
 	
 		<h2 class="writer">
 		작성자 <BR><div style = "border:2px solid pink; width:40%;">${boardDto.writer }</div>
