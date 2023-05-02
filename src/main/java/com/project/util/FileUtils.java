@@ -22,19 +22,6 @@ public class FileUtils {
 //		return mediaMap.get(ext.toUpperCase());
 //	}
 	
-	//파일 업로드
-	public static String uploadFile(MultipartFile file,String uploadPath) throws Exception {
-		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-		String dirname = getCurrentUploadPath(uploadPath);
-		File target = new File(dirname, filename);
-		FileCopyUtils.copy(file.getBytes(), target);
-		
-		
-//		mkThumbnail(dirname,filename);
-		
-		return filename;
-	}
-	
 //	private static void mkThumbnail(String dirname, String filename) throws IOException {
 //		BufferedImage srcImg = ImageIO.read(new File(dirname, filename));
 //		BufferedImage destImg = Scalr.resize(srcImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
@@ -43,6 +30,16 @@ public class FileUtils {
 //		String ext = getFileExtension(filename);
 //		ImageIO.write(destImg, ext.toUpperCase(), newFile);
 //	}
+	
+	//파일 업로드
+	public static String uploadFile(MultipartFile file,String uploadPath) throws Exception {
+		String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+		String dirname = getCurrentUploadPath(uploadPath);
+		File target = new File(dirname, filename);
+		FileCopyUtils.copy(file.getBytes(), target);
+				
+		return filename;
+	}
 
 	//확장자 찾기
 	public static String getFileExtension(String filename) {
@@ -61,16 +58,16 @@ public class FileUtils {
 	
 	//폴더생성 메소드
 	private static String makeDir(String uploadRootPath, String... paths) {
-		for(String path:paths) {
-			uploadRootPath += File.separator + path;
-			File tmpFile = new File(path);
-			if(tmpFile.exists())
-				continue;
-			else
-				tmpFile.mkdir();
-		}
-		
-		return uploadRootPath;
+	    String dirPath = uploadRootPath;
+	    for(String path:paths) {
+	        dirPath += File.separator + path;
+	        File tmpFile = new File(dirPath);
+	        if(tmpFile.exists())
+	            continue;
+	        else
+	            tmpFile.mkdir();
+	    }
+	    return dirPath;
 	}
 
 	private static String len2(int n) {

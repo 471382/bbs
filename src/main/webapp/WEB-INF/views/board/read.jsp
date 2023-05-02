@@ -58,9 +58,9 @@ $(document).ready(function(){
         <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
             <img class="imgFile" src="../resources/workspace/${ boardDto.file }" />
         </c:when>
-        <%-- <c:otherwise>
-            <a href="${pageContext.request.contextPath}/download.do?filename=${boardDto.filename}&originalFilename=${boardDto.originalFilename}">다운로드</a>
-        </c:otherwise> --%>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/download?filename=${boardDto.filename}">다운로드</a>
+        </c:otherwise>
     </c:choose>
 </c:if><br><div class = "content">${boardDto.content }</div></div>
 		<%-- <textarea  style="width:50%" name="content" rows="3"
