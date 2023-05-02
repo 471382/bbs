@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.dto.BoardDto;
 import com.project.service.IBoardService;
-import com.project.util.FileUtils;
 import com.project.vo.PageMaker;
 
 /**
@@ -59,7 +58,7 @@ public class BoardController {
 	    board.setContent(request.getParameter("content"));
 	    MultipartFile file = request.getFile("file");
 	    if (file != null && !file.isEmpty()) {
-	        String savedFileName = FileUtils.uploadFile(file,uploadPath);
+	        String savedFileName = uploadFile(file);
 	        model.addAttribute("savedFileName", savedFileName);
 	        board.setFile(savedFileName);
 	    }
@@ -68,12 +67,12 @@ public class BoardController {
 	    return "redirect:/board/list";
 	}
 
-//	private String uploadFile(MultipartFile file) throws Exception {
-//	    String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
-//	    File target = new File(uploadPath, filename);
-//	    FileCopyUtils.copy(file.getBytes(), target);
-//	    return filename;
-//	}
+	private String uploadFile(MultipartFile file) throws Exception {
+	    String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+	    File target = new File(uploadPath, filename);
+	    FileCopyUtils.copy(file.getBytes(), target);
+	    return filename;
+	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
