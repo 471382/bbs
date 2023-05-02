@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.dto.BoardDto;
 import com.project.service.IBoardService;
+import com.project.util.FileUtils;
 import com.project.vo.PageMaker;
 
 /**

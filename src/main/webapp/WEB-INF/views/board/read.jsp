@@ -59,7 +59,6 @@ $(document).ready(function(){
             
             
             <img class="imgFile" src="/controller/resources/workspace/${ boardDto.file }" />
-            <%-- <img class="imgFile" src="<c:url value='/resources/workspace/'/>${year}/${month}/${day}/${boardDto.file}"/> --%>
         </c:when>
        <%--  <c:otherwise>
             <a href="${pageContext.request.contextPath}/download?filename=${boardDto.filename}">다운로드</a>
