@@ -12,13 +12,13 @@
 </head>
 <body>
 	<form role="form" action="/controller/board/write" method="post" enctype="multipart/form-data">
-		<h1> 제목  <input type="text"
+		<h1 class = "writeTitle"> 제목  <input type="text"
 				name='title' placeholder="제목을 입력해 주세요" style="width:100%; height:30px"></h3> 
-		<h2> 내용 
+		<h2 class = "writeText"> 내용 
 			<textarea name="content" rows="8" style="width:100%"
 				placeholder="내용을 입력해 주세요."></textarea></h2>
 		
-		<h2> 작성자 
+		<h2 class = "writer"> 작성자 
 			<input type="text"
 				name="writer"  placeholder="작성자"  style="width:100%"></h2> 
 				<input type = "file" name = "file"><br>

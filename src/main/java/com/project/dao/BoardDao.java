@@ -14,4 +14,5 @@ public interface BoardDao {
 	public int listSearchCount(PageMaker pm) throws Exception;
 	public void updateViewCnt(int bno);
 	public void addAttach(String file);
+	public String readAttach(int bno);
 }

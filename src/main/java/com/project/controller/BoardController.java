@@ -76,9 +76,11 @@ public class BoardController {
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
-//		BoardDto dto = bs.read(bno);
-//		System.out.println(dto);
-		model.addAttribute(bs.read(bno));
+		BoardDto dto = bs.read(bno);
+		dto.setFile(bs.readAttach(bno));
+		System.out.println(dto);
+		
+		model.addAttribute(dto);
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)

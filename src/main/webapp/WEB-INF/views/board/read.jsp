@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="/controller/resources/css/template.css" />
 <title>Read Page</title>
 <script>
 $(document).ready(function(){
@@ -39,22 +41,32 @@ $(document).ready(function(){
 <form role="form" method="post">
 	<input type='hidden' name='bno' value="${boardDto.bno}">
 </form>
-	<h1>READ</h1>
-	<h2>
+	<h1 class="pageMotif">READ</h1>
+	<h2 class="title">
 		제목<BR>
-		<div style = "border:2px solid blue; width:40%;">
+		<div style = "border:2px solid blue; width:80%;">
 		${boardDto.title }
 		</div>
 		<%-- <input type="text"
 			name='title'  style="width:50%" value="${boardDto.title}"
 			readonly="readonly"> --%></h2>
 	
-		<h2>
-		내용<BR><div style = "border:2px solid green; width:40%; height:200px;">${boardDto.content }</div>
+		<h2 class="text">
+		내용<BR><div style = "border:2px solid green; width:80%; height:600px;">
+		<c:if test="${boardDto.file != null and boardDto.file != ''}">
+    <c:choose>
+        <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
+            <img src="../resources/workspace/${ boardDto.file }" />
+        </c:when>
+        <%-- <c:otherwise>
+            <a href="${pageContext.request.contextPath}/download.do?filename=${boardDto.filename}&originalFilename=${boardDto.originalFilename}">다운로드</a>
+        </c:otherwise> --%>
+    </c:choose>
+</c:if><br>${boardDto.content }</div>
 		<%-- <textarea  style="width:50%" name="content" rows="3"
 			readonly="readonly">${boardDto.content}</textarea> --%>	</h2>
 	
-		<h2>
+		<h2 class="writer">
 		작성자 <BR><div style = "border:2px solid pink; width:40%;">${boardDto.writer }</div>
 		<%-- <input type="text"
 			name="writer" style="width:50%" value="${boardDto.writer}"

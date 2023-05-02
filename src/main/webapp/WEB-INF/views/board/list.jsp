@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="/controller/resources/css/template.css?after" />
+	href="/controller/resources/css/template.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>List Page</title>
@@ -41,8 +41,8 @@
 </head>
 <body>
 	<div class="main">
-		<h2>게시판</h2>
-		<h5>목록</h5>
+		<h2 class = "pageMotif">게시판</h2>
+		<h5 class = "currentPage">목록</h5>
 		<div class="search-box">
 			<select name="searchType">
 				<option value="n"
@@ -66,7 +66,7 @@
 			<button id="searchBtn">검색</button>
 		</div>
 
-		<table>
+		<table class = "listTable">
 			<tr>
 				<th style="width: 10px">No</th>
 				<th style="width: 130px">제목</th>

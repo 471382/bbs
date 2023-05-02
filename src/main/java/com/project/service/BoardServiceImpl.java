@@ -31,6 +31,12 @@ public class BoardServiceImpl implements IBoardService {
 		dao.updateViewCnt(bno);
 		return dao.read(bno);
 	}
+	
+	@Override
+	public String readAttach(int bno) throws Exception{
+		BoardDao dao=sqlSession.getMapper(BoardDao.class);
+		return dao.readAttach(bno);
+	}
 
 	@Override
 	public void modify(BoardDto board) throws Exception {

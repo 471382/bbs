@@ -13,4 +13,5 @@ public interface IBoardService {
 	
 	public List<BoardDto> listSearchCriteria(PageMaker pm) throws Exception;
 	public int listSearchCount(PageMaker pm) throws Exception;
+	public String readAttach(int bno) throws Exception;
 }
