@@ -52,19 +52,19 @@ $(document).ready(function(){
 			readonly="readonly"> --%></h2>
 	
 		<h2 class="text">
-		내용<BR><div style = "border:2px solid green; width:80%; height:600px;">
+		내용</h2><div style = "border:2px solid green; width:80%; height:600px;">
 		<c:if test="${boardDto.file != null and boardDto.file != ''}">
     <c:choose>
         <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
-            <img src="../resources/workspace/${ boardDto.file }" />
+            <img class="imgFile" src="../resources/workspace/${ boardDto.file }" />
         </c:when>
         <%-- <c:otherwise>
             <a href="${pageContext.request.contextPath}/download.do?filename=${boardDto.filename}&originalFilename=${boardDto.originalFilename}">다운로드</a>
         </c:otherwise> --%>
     </c:choose>
-</c:if><br>${boardDto.content }</div>
+</c:if><br><div class = "content">${boardDto.content }</div></div>
 		<%-- <textarea  style="width:50%" name="content" rows="3"
-			readonly="readonly">${boardDto.content}</textarea> --%>	</h2>
+			readonly="readonly">${boardDto.content}</textarea> --%>
 	
 		<h2 class="writer">
 		작성자 <BR><div style = "border:2px solid pink; width:40%;">${boardDto.writer }</div>

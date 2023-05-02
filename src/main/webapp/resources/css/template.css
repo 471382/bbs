@@ -5,6 +5,10 @@
 	text-align: center;
 }
 
+.main {
+	margin-left: 30px;
+}
+
 /* 게시판 테이블 */
 .listTable {
 	width: 100%;
@@ -78,6 +82,18 @@
 	margin-right: 5px;
 	background-color: #32df22;
 	text-decoration: none;
+}
+
+.imgFile {
+	margin-left : 5px;
+	margin-top : 5px;
+	max-width: 400px;
+	max-height: 400px;
+}
+
+.content {
+	margin-left : 5px;
+	margin-top : 10px;
 }
 
 .writeBtn {
