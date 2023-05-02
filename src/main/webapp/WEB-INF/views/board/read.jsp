@@ -56,15 +56,25 @@ $(document).ready(function(){
 		<c:if test="${boardDto.file != null and boardDto.file != ''}">
     <c:choose>
         <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
+            <a href="${pageContext.request.contextPath}/download?fileName=${boardDto.file}"><img class="imgFile" src="/controller/resources/workspace/${ boardDto.file }" /></a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/download?fileName=${boardDto.file}">${boardDto.file}</a>
+        </c:otherwise>
+    </c:choose>
+</c:if>
+		<%-- <c:if test="${boardDto.file != null and boardDto.file != ''}">
+    <c:choose>
+        <c:when test="${boardDto.file.endsWith('.JPG') or boardDto.file.endsWith('.JPEG') or boardDto.file.endsWith('.PNG') or boardDto.file.endsWith('.GIF')}">
             
             
             <img class="imgFile" src="/controller/resources/workspace/${ boardDto.file }" />
         </c:when>
-       <%--  <c:otherwise>
+        <c:otherwise>
             <a href="${pageContext.request.contextPath}/download?filename=${boardDto.filename}">다운로드</a>
-        </c:otherwise> --%>
+        </c:otherwise>
     </c:choose>
-</c:if><br><div class = "content">${boardDto.content }</div></div>
+</c:if> --%><br><div class = "content">${boardDto.content }</div></div>
 		<%-- <textarea  style="width:50%" name="content" rows="3"
 			readonly="readonly">${boardDto.content}</textarea> --%>
 	
