@@ -79,18 +79,29 @@ public class BoardController {
 	public void read(@RequestParam("bno") int bno, Model model) throws Exception{
 		BoardDto dto = bs.read(bno);
 		dto.setFile(bs.readAttach(bno));
-		System.out.println(dto);
+		
 		
 		model.addAttribute(dto);
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void modify(@RequestParam("bno") int bno,PageMaker pm,Model model) throws Exception{
-		model.addAttribute(bs.read(bno));
+		BoardDto dto = bs.read(bno);
+		dto.setFile(bs.readAttach(bno));
+		System.out.println(dto);
+		model.addAttribute(dto);
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyDB(BoardDto board,PageMaker pm,Model model, RedirectAttributes ra) throws Exception{
+	public String modifyDB(BoardDto board,PageMaker pm,Model model, RedirectAttributes ra,MultipartHttpServletRequest request) throws Exception{
+		MultipartFile multipartFile = request.getFile("file");
+		if (!multipartFile.isEmpty()) {
+	        String originalFileName = multipartFile.getOriginalFilename();
+	        String storedFileName = UUID.randomUUID().toString() + "." + originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+	        multipartFile.transferTo(new File(uploadPath, storedFileName));
+	        board.setFile(storedFileName);
+	    }
+		
 		bs.modify(board);
 		ra.addAttribute("page",pm.getPage());
 		ra.addAttribute("perPageNum", pm.getPerPageNum());

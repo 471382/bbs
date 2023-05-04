@@ -30,7 +30,7 @@ $(document).ready(function() {
 </head>
 <body>
 	<div class="main">
-		<form class="form" method="post">
+		<form class="form" method="post" enctype="multipart/form-data">
 			<input type='hidden' name='bno' value="${boardDto.bno }">
 			<input type='hidden' name='page' value="${pageMaker.page}">
 			<input type='hidden' name='perPageNum' value="${pageMaker.perPageNum }">
@@ -45,6 +45,9 @@ $(document).ready(function() {
 			</h2>
 			<h2>작성자<BR>${boardDto.writer }
 				<input type='hidden' name='writer' value="${boardDto.writer }">
+			</h2>
+			<h2>첨부파일<BR>
+			<input type='file' name='file'>
 			</h2>
 		</form>
 		<button type="submit" class="btnSave">저장</button>

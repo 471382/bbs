@@ -38,6 +38,8 @@ public class DownloadController {
 
 		// 다운로드할 파일이 존재하지 않으면 404 에러 반환
 		if (!file.exists()) {
+			System.out.println("file is not found");
+			System.out.println(fileName);
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}

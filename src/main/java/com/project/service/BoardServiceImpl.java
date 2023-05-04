@@ -41,6 +41,7 @@ public class BoardServiceImpl implements IBoardService {
 	@Override
 	public void modify(BoardDto board) throws Exception {
 		BoardDao dao=sqlSession.getMapper(BoardDao.class);
+		if(board.getFile()!= null) dao.updateAttach(board.getFile());
 		dao.update(board);
 	}
 
