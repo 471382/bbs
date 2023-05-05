@@ -93,15 +93,27 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyDB(BoardDto board,PageMaker pm,Model model, RedirectAttributes ra,MultipartHttpServletRequest request) throws Exception{
-		MultipartFile multipartFile = request.getFile("file");
-		if (!multipartFile.isEmpty()) {
-	        String originalFileName = multipartFile.getOriginalFilename();
-	        String storedFileName = UUID.randomUUID().toString() + "." + originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-	        multipartFile.transferTo(new File(uploadPath, storedFileName));
-	        board.setFile(storedFileName);
+	public String modifyDB(MultipartHttpServletRequest request,PageMaker pm,Model model, RedirectAttributes ra) throws Exception{
+//		MultipartFile multipartFile = request.getFile("file");
+//		if (!multipartFile.isEmpty()) {
+//	        String originalFileName = multipartFile.getOriginalFilename();
+//	        String storedFileName = UUID.randomUUID().toString() + "." + originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+//	        multipartFile.transferTo(new File(uploadPath, storedFileName));
+//	        board.setFile(storedFileName);
+//	    }
+		BoardDto board = new BoardDto();
+//	    System.out.println(request.getParameter("title"));
+		board.setBno(Integer.parseInt(request.getParameter("bno")));
+	    board.setTitle(request.getParameter("title"));
+	    board.setWriter(request.getParameter("writer"));
+	    board.setContent(request.getParameter("content"));
+	    MultipartFile file = request.getFile("file");
+	    if (file != null && !file.isEmpty()) {
+	        String savedFileName = uploadFile(file);
+	        model.addAttribute("savedFileName", savedFileName);
+	        board.setFile(savedFileName);
 	    }
-		
+		System.out.println(board);
 		bs.modify(board);
 		ra.addAttribute("page",pm.getPage());
 		ra.addAttribute("perPageNum", pm.getPerPageNum());

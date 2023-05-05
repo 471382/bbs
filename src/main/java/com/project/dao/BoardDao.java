@@ -15,5 +15,5 @@ public interface BoardDao {
 	public void updateViewCnt(int bno);
 	public void addAttach(String file);
 	public String readAttach(int bno);
-	public void updateAttach(String file);
+	public void updateAttach(BoardDto dto);
 }
