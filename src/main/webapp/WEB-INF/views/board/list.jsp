@@ -107,8 +107,7 @@
 			<c:if test="${pageMaker.page != idx}">
 				<a href='list${pageMaker.makeSearch(idx)}'<c:out value="${pageMaker.page==idx?' class=active ':'' }" />>${idx}</a>
 			</c:if>
-			<%-- <a href='list${pageMaker.makeSearch(idx)}' 
-			<c:out value="${pageMaker.page==idx?' class=active ':'' }" />>${idx}</a>--%>
+			
 		</c:forEach>
 
 		<c:if test="${pageMaker.next }">

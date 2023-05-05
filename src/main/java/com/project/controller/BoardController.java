@@ -39,9 +39,6 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(PageMaker pm, Model model) throws Exception{
 		List<BoardDto> dtos = bs.listSearchCriteria(pm);
-		for(BoardDto dto: dtos) {
-			System.out.println(dto);
-		}
 		model.addAttribute("list",bs.listSearchCriteria(pm));
 		pm.setTotalCount(bs.listSearchCount(pm));
 	}
@@ -53,7 +50,6 @@ public class BoardController {
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String writeDB(MultipartHttpServletRequest request, RedirectAttributes ra, Model model) throws Exception {
 	    BoardDto board = new BoardDto();
-	    System.out.println(request.getParameter("title"));
 	    board.setTitle(request.getParameter("title"));
 	    board.setWriter(request.getParameter("writer"));
 	    board.setContent(request.getParameter("content"));
@@ -80,7 +76,6 @@ public class BoardController {
 		BoardDto dto = bs.read(bno);
 		dto.setFile(bs.readAttach(bno));
 		
-		
 		model.addAttribute(dto);
 	}
 	
@@ -88,38 +83,32 @@ public class BoardController {
 	public void modify(@RequestParam("bno") int bno,PageMaker pm,Model model) throws Exception{
 		BoardDto dto = bs.read(bno);
 		dto.setFile(bs.readAttach(bno));
-		System.out.println(dto);
 		model.addAttribute(dto);
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyDB(MultipartHttpServletRequest request,PageMaker pm,Model model, RedirectAttributes ra) throws Exception{
-//		MultipartFile multipartFile = request.getFile("file");
-//		if (!multipartFile.isEmpty()) {
-//	        String originalFileName = multipartFile.getOriginalFilename();
-//	        String storedFileName = UUID.randomUUID().toString() + "." + originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-//	        multipartFile.transferTo(new File(uploadPath, storedFileName));
-//	        board.setFile(storedFileName);
-//	    }
+		
 		BoardDto board = new BoardDto();
-//	    System.out.println(request.getParameter("title"));
 		board.setBno(Integer.parseInt(request.getParameter("bno")));
 	    board.setTitle(request.getParameter("title"));
 	    board.setWriter(request.getParameter("writer"));
 	    board.setContent(request.getParameter("content"));
 	    MultipartFile file = request.getFile("file");
+	    
 	    if (file != null && !file.isEmpty()) {
 	        String savedFileName = uploadFile(file);
 	        model.addAttribute("savedFileName", savedFileName);
 	        board.setFile(savedFileName);
 	    }
-		System.out.println(board);
+	    
 		bs.modify(board);
 		ra.addAttribute("page",pm.getPage());
 		ra.addAttribute("perPageNum", pm.getPerPageNum());
 		ra.addAttribute("searchType", pm.getSearchType());
 		ra.addAttribute("keyword", pm.getKeyword());
 		ra.addFlashAttribute("msg","success");
+		
 		return "redirect:/board/list";
 	}
 	

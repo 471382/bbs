@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/controller/resources/css/template.css"/>
 <title>Write Page</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<form role="form" action="/controller/board/write" method="post" enctype="multipart/form-data">

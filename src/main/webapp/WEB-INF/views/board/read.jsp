@@ -64,9 +64,6 @@ $(document).ready(function(){
 	
 		<h2 class="writer">
 		작성자 <BR><div style = "border:2px solid pink; width:40%;">${boardDto.writer }</div>
-		<%-- <input type="text"
-			name="writer" style="width:50%" value="${boardDto.writer}"
-			readonly="readonly"> --%>
 		<h2>
 
 <!-- /.box-body -->

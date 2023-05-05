@@ -52,28 +52,18 @@ update tbl_attach set fullname=#{file} where bno=#{bno}
 	</if>
 </sql>
 
-<!-- ![CDATA는 []괄호 안에 있는것은 일반 문자열을 기술한것이다. -->
 <select id="listSearch" resultType="com.project.dto.BoardDto">
 <![CDATA[select bno, title, content, writer, viewcnt, TO_CHAR(regdate, 'yyyy-MM-dd HH24:MI:SS') AS regdate from (select rownum rn,a.*
     from (
         select tbl_board.*
         from tbl_board 
         where 1=1  ]]>
-<!-- include 는 refid 옆에 입력한 search를 찾아간다 위에 sql id='search'로 찾아간다. -->         
+              
 <include refid="search"/>
 <![CDATA[   order by bno desc) a where rownum<=#{page} * #{perPageNum}) b
 	where rn>(#{page} -1) * #{perPageNum}]]>
 </select>
 
-<!-- <select id="listSearch" resultType="com.human.dto.BoardDTO">
-<![CDATA[select bno, title, content, writer, viewcnt, regdate from
-(select /*+INDEX_DESC(tbl_board,pk_board)*/ 
-rownum rn,bno,title,content,writer,viewcnt,regdate
-from tbl_board where 1=1 ]]>
-<include refid="search"/>
-<![CDATA[ and rownum <= #{page} * #{perPageNum} and bno > 0 ) 
-where rn > (#{page} -1) * #{perPageNum}]]>
-</select> -->
 
 
 <!-- 모돈 데이터를 count하고 있다. -->
