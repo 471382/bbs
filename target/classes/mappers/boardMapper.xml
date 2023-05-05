@@ -36,6 +36,9 @@ update tbl_attach set fullname=#{file} where bno=#{bno}
 <delete id="delete">
 	delete from tbl_board where bno=#{bno}
 </delete>
+<delete id="deleteAttach">
+	delete from tbl_attach where bno=#{bno}
+</delete>
 
 <sql id='search'>
 	<if test="searchType!=null">

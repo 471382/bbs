@@ -44,10 +44,12 @@ public class BoardServiceImpl implements IBoardService {
 		if(board.getFile()!= null) dao.updateAttach(board);
 		dao.update(board);
 	}
-
+	
+	@Transactional
 	@Override
 	public void remove(int bno) throws Exception {
 		BoardDao dao=sqlSession.getMapper(BoardDao.class);
+		dao.deleteAttach(bno);
 		dao.delete(bno);
 	}
 
