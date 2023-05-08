@@ -15,7 +15,6 @@ BBS는 Spring Framework를 활용한 간단한 게시판 웹 애플리케이션�
 ## 실행 방법
 1. git clone 명령어를 이용해 프로젝트를 로컬 저장소에 복제합니다.
 ```bash
-Copy code
 git clone https://github.com/471382/bbs.git
 ```
 2. STS에서 File - Import - Existing Maven Projects를 선택합니다.
